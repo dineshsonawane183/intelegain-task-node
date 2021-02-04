@@ -3,7 +3,7 @@ const cors = require('cors');
 const express = require("express");
 const path = require("path");
 
-const taskRouter = require("./api/tasks/task.router.js");
+const employeeRouter = require("./api/employee/employee.router.js");
 const userRouter = require("./api/users/user.router.js");
 const commonRouter = require("./api/common/common.router.js");
 
@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use(express.static(path.join(__dirname, "public")));
-app.use('/api/task', taskRouter);
+app.use('/api/employee', employeeRouter);
 app.use('/api/user', userRouter);
 app.use('/', commonRouter)
 
