@@ -6,7 +6,7 @@ const path = require("path");
 const employeeRouter = require("./api/employee/employee.router.js");
 const userRouter = require("./api/users/user.router.js");
 const commonRouter = require("./api/common/common.router.js");
-
+const userRole  = require("./api/role/role.router.js");
 const app = express();
 
 app.use(cors());
@@ -19,6 +19,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use('/api/employee', employeeRouter);
 app.use('/api/user', userRouter);
+app.use('/api/role', userRole);
 app.use('/', commonRouter)
 
 app.post('login', (req, res) => {

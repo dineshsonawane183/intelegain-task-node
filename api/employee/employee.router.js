@@ -2,8 +2,9 @@ const app = require('express');
 const pool = require('../../dbconfig/db');
 const router = app.Router();
 var dateFormat = require('dateformat');
+const { checkToken } = require('../../auth/token-validation');
 //get All tasks
-router.get("/", (req, res) => {
+router.get("/", checkToken,  (req, res) => {
     // let off = req.query.offset?parseInt(req.query.offset):6;
     // let limit = req.query.limit?parseInt(req.query.limit):20;
     // const firstParam = !req.query.limit ? 0 :limit * off;  
@@ -17,7 +18,7 @@ router.get("/", (req, res) => {
 
     })
 });
-router.get("/totalEmployees", (req, res) => {
+router.get("/totalEmployees",  checkToken,  (req, res) => {
     
     pool.query('select count(*) as total from employee limit 1' ,(err, data) => {
         if (err) {
@@ -30,7 +31,7 @@ router.get("/totalEmployees", (req, res) => {
 });
 
 //create Employee
-router.post("/", (req, res) => {
+router.post("/", checkToken, (req, res) => {
     const arr = [
         req.body.name,
         req.body.address,
@@ -55,7 +56,7 @@ router.post("/", (req, res) => {
 
 
 //delete task
-router.delete("/delete", (req, res) => {
+router.delete("/delete", checkToken, (req, res) => {
     pool.query(
         `delete from employee where id = ?`,
         [
@@ -72,8 +73,8 @@ router.delete("/delete", (req, res) => {
 });
 
 
-//update task
-router.patch("/", (req, res) => {
+//update employee
+router.patch("/",   checkToken,(req, res) => {
     pool.query(
         `update employee set name=?, address=?, contact=?, email=?,designation = ?,joining_date = ?,birth_date = ? where id = ?`,
         [

@@ -18,7 +18,7 @@
   CREATE TABLE USER_ROLES 
     (   
     ID INT NOT NULL AUTO_INCREMENT, 
-    ROLE_TYPE VARCHAR(20) NOT NULL, 
+    ROLE_TYPE VARCHAR(255) NOT NULL, 
     ROLE_DESCRIPTION VARCHAR(100) NOT NULL, 
 	EMAIL VARCHAR(255) NOT NULL, 
     CREATED_DATE DATETIME DEFAULT CURRENT_TIMESTAMP, 
@@ -37,6 +37,18 @@ CREATE TABLE PERMISSIONS_TABLE
     CREATED_DATE DATETIME DEFAULT CURRENT_TIMESTAMP, 
      PRIMARY KEY (ID)
    );
+   create table employee(
+id int auto_increment,
+name varchar(255) not null,
+address varchar(255),
+contact varchar(15),
+email varchar(30),
+designation varchar(50),
+joining_date datetime,
+birth_date datetime,
+     PRIMARY KEY (ID)
+);
+   
    
 #   drop table PERMISSIONS_TABLE;
 #   drop table USER_ROLES;
@@ -60,12 +72,13 @@ select * from users_table;
 delete from users_table where id >1;
 
 # alter table users_table modify column password text not null;
-#alter table USER_ROLES add column parent INT not null;
+alter table USER_ROLES add column parent INT not null;
 
-#alter table users_table add column email varchar(255) not null;
+alter table users_table add column email varchar(255) not null;
+   insert into employee(name,address,contact,email,designation,joining_date,birth_date) values("Dinesh","my address","939393393","dienshz@gmail.com",
+"programmer analyst", "2020-10-22" ,"1997-10-22");
    
-   
- # ADDD PARENT REFERENCE TO ROLE
+   #ADDD PARENT REFERENCE TO ROLE
    
    
    

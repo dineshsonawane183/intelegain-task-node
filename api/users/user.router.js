@@ -1,10 +1,13 @@
 const app = require('express');
+const { checkToken } = require('../../auth/token-validation');
 const pool = require('./../../dbconfig/db')
 const userRouter = app.Router();
 
 //get All users
-userRouter.get("/", (req, res) => {
-    pool.query('select id,name,task_id,email,username from user', (err, data) => {
+userRouter.get("/",checkToken,  (req, res) => {
+    pool.query(`select u.id, u.user_name, u.first_name,u.last_name,u.created_date as user_created_date, r.role_type,
+    r.role_description,p.permission_code from USERS_TABLE as u  inner join USER_ROLES as r  on u.role_id_fk = r.id
+     inner join PERMISSIONS_TABLE as p on r.permission_id_fk = p.id`, (err, data) => {
         if (err) {
             res.status(400).json({ msg: "something went wrong" });
         } else {
@@ -15,7 +18,7 @@ userRouter.get("/", (req, res) => {
 });
 
 //create task
-userRouter.post("/", (req, res) => {
+userRouter.post("/",checkToken, (req, res) => {
     pool.query(
         `insert into user (name, task_id,username,password) values(?,?,?,?);`,
         [
@@ -35,7 +38,7 @@ userRouter.post("/", (req, res) => {
 });
 
 //update task
-userRouter.patch("/", (req, res) => {
+userRouter.patch("/",checkToken, (req, res) => {
     pool.query(
         `update user set name=?, task_id=? where id = ?`,
         [
