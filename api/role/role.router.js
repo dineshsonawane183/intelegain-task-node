@@ -14,6 +14,18 @@ router.get("/", checkToken, (req, res) => {
 
     })
 });
+router.get("/id", checkToken, (req, res) => {
+    pool.query('select * from USER_ROLES where id = ?', [
+        req.query.id?parseInt( req.query.id): req.query.id
+    ], (err, data) => {
+        if (err) {
+            res.status(400).json({ msg: "something went wrong" });
+        } else {
+            res.status(200).json({ data: data[0] });
+        }
+
+    })
+});
 router.get("/permission", checkToken, (req, res) => {
     pool.query('select * from PERMISSIONS_TABLE', (err, data) => {
         if (err) {

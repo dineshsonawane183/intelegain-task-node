@@ -9,7 +9,7 @@ const SendMail = require('../../sendMail');
 
 router.post("/login", (req, res) => {
     pool.query(
-        `select id,user_name,first_name,last_name,password from USERS_TABLE where USER_NAME = ?`,
+        `select id,user_name,first_name,last_name,password,role_id_fk from USERS_TABLE where USER_NAME = ?`,
         [
             req.body.username
         ],
