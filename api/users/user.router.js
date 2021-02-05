@@ -17,15 +17,17 @@ userRouter.get("/",checkToken,  (req, res) => {
     })
 });
 
-//create task
-userRouter.post("/",checkToken, (req, res) => {
+
+//update User
+userRouter.patch("/",checkToken, (req, res) => {
     pool.query(
-        `insert into user (name, task_id,username,password) values(?,?,?,?);`,
+        `update USERS_TABLE set first_name =?, last_name =?,user_name =?, role_id_fk =? where id = ?`,
         [
-            req.body.name,
-            req.body.task_id,
-            req.body.username,
-            req.body.password,
+            req.body.first_name,
+            req.body.last_name,
+            req.body.user_name,
+            req.body.role_id,
+            req.body.id,
         ],
         (error, results) => {
             if (error) {
@@ -36,21 +38,18 @@ userRouter.post("/",checkToken, (req, res) => {
         }
     );
 });
-
-//update task
-userRouter.patch("/",checkToken, (req, res) => {
+//delete task
+userRouter.delete("/delete", checkToken, (req, res) => {
     pool.query(
-        `update user set name=?, task_id=? where id = ?`,
+        `delete from USERS_TABLE where id = ?`,
         [
-            req.body.name,
-            req.body.task_id,
             req.body.id,
         ],
         (error, results) => {
             if (error) {
                 res.status(400).json({ msg: "something went wrong" });
             } else {
-                res.status(200).json({ res: results });
+                res.status(200).json({ status:"success",deletedEmp : req.body.id });
             }
         }
     );
