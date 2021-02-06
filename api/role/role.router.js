@@ -5,7 +5,7 @@ var dateFormat = require('dateformat');
 const { checkToken } = require('../../auth/token-validation');
 
 router.get("/", checkToken, (req, res) => {
-    pool.query('select * from USER_ROLES', (err, data) => {
+    pool.query('select * from USER_ROLES order by id desc', (err, data) => {
         if (err) {
             res.status(400).json({ msg: "something went wrong" });
         } else {
@@ -36,7 +36,22 @@ router.get("/permission", checkToken, (req, res) => {
 
     })
 });
-
+//delete Role
+router.delete("/delete", checkToken, (req, res) => {
+    pool.query(
+        `delete from USER_ROLES where id = ?`,
+        [
+            req.body.id,
+        ],
+        (error, results) => {
+            if (error) {
+                res.status(400).json({ msg: "something went wrong" });
+            } else {
+                res.status(200).json({ status:"success",deletedRole : req.body.id });
+            }
+        }
+    );
+});
 router.post("/", checkToken, (req, res) => {
     const arr = [
         req.body.role_type,
@@ -47,6 +62,26 @@ router.post("/", checkToken, (req, res) => {
     pool.query(
         `insert into user_roles (ROLE_TYPE,ROLE_DESCRIPTION,PERMISSION_ID_FK,PARENT) values(?,?,?,?);`,
         arr,
+        (error, results) => {
+            if (error) {
+                res.status(400).json({ msg: "something went wrong" });
+            } else {
+                res.status(200).json({ res: results });
+            }
+        }
+    );
+});
+//update role
+router.patch("/",   checkToken,(req, res) => {
+    pool.query(
+        `update user_roles set ROLE_TYPE=?, ROLE_DESCRIPTION=?, PERMISSION_ID_FK=?, PARENT=? where id = ?`,
+        [
+            req.body.role_type,
+            req.body.role_description,
+            req.body.permission,
+            req.body.parent,
+            req.body.id,
+        ],
         (error, results) => {
             if (error) {
                 res.status(400).json({ msg: "something went wrong" });
