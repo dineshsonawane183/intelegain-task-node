@@ -52,6 +52,23 @@ router.delete("/delete", checkToken, (req, res) => {
         }
     );
 });
+//delete Role
+router.delete("/permission/delete", checkToken, (req, res) => {
+    pool.query(
+        `delete from permissions_table where id = ?`,
+        [
+            req.body.id,
+        ],
+        (error, results) => {
+            if (error) {
+                res.status(400).json({ msg: "something went wrong" });
+            } else {
+                res.status(200).json({ status:"success",deletedPermission : req.body.id });
+            }
+        }
+    );
+});
+
 router.post("/", checkToken, (req, res) => {
     const arr = [
         req.body.role_type,
