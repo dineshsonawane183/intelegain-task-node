@@ -14,8 +14,8 @@ router.get("/", checkToken, (req, res) => {
 
     })
 });
-router.get("/id", checkToken, (req, res) => {
-    pool.query('select * from USER_ROLES where id = ?', [
+router.get("/id", (req, res) => {
+    pool.query('   select u.id as user_id,u.ROLE_TYPE,u.ROLE_DESCRIPTION,p.id  as permission_id ,p.PERMISSION_CODE,p.PERMISSION_ARRAY from USER_ROLES as u  inner join PERMISSIONS_TABLE as p on p.id= u.PERMISSION_ID_FK where u.id = ?', [
         req.query.id?parseInt( req.query.id): req.query.id
     ], (err, data) => {
         if (err) {
@@ -95,9 +95,10 @@ router.post("/permission", checkToken, (req, res) => {
     const arr = [
         req.body.permission_code,
         req.body.permission_desc,
+       JSON.stringify(req.body.permission_array)
     ];
     pool.query(
-        `insert into permissions_table (PERMISSION_CODE,PERMISSION_DESC) values(?,?);`,
+        `insert into permissions_table (PERMISSION_CODE,PERMISSION_DESC,PERMISSION_ARRAY) values(?,?,?);`,
         arr,
         (error, results) => {
             if (error) {

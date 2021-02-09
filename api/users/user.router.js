@@ -6,7 +6,7 @@ const userRouter = app.Router();
 //get All users
 userRouter.get("/",checkToken,  (req, res) => {
     pool.query(`select u.id, u.user_name, u.first_name,u.last_name,u.created_date as user_created_date, r.role_type,
-    r.role_description,p.permission_code from USERS_TABLE as u  inner join USER_ROLES as r  on u.role_id_fk = r.id
+    r.role_description,p.permission_code,p.permission_array from USERS_TABLE as u  inner join USER_ROLES as r  on u.role_id_fk = r.id
      inner join PERMISSIONS_TABLE as p on r.permission_id_fk = p.id`, (err, data) => {
         if (err) {
             res.status(400).json({ msg: "something went wrong" });
@@ -21,12 +21,13 @@ userRouter.get("/",checkToken,  (req, res) => {
 //update User
 userRouter.patch("/",checkToken, (req, res) => {
     pool.query(
-        `update USERS_TABLE set first_name =?, last_name =?,user_name =?, role_id_fk =? where id = ?`,
+        `update USERS_TABLE set first_name =?, last_name =?,user_name =?, role_id_fk =?, permission_id =? where id = ?`,
         [
             req.body.first_name,
             req.body.last_name,
             req.body.user_name,
             req.body.role_id,
+            req.body.permission_id,
             req.body.id,
         ],
         (error, results) => {
