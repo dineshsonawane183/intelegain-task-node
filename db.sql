@@ -1,4 +1,4 @@
-# create database testdb;
+/* # create database testdb;
 # use testdb;
  
  CREATE TABLE USERS_TABLE 
@@ -82,4 +82,4 @@ alter table users_table add column email varchar(255) not null;
    
    
    
-   
+    */

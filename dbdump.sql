@@ -59,7 +59,7 @@ CREATE TABLE `permissions_table` (
   `CREATED_DATE` datetime DEFAULT CURRENT_TIMESTAMP,
   `PERMISSION_ARRAY` text,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -68,7 +68,7 @@ CREATE TABLE `permissions_table` (
 
 LOCK TABLES `permissions_table` WRITE;
 /*!40000 ALTER TABLE `permissions_table` DISABLE KEYS */;
-INSERT INTO `permissions_table` VALUES (1,'CREATE','user can create user','2021-02-02 18:43:51',NULL),(2,'ALL','user have all access','2021-02-02 18:48:15','[ \"View Employees\", \"Create Employee\", \"Edit Employee\",\"Delete Employee\",\"View Users\",\"Edit Users\",\"Edit Role\", \"Delete Users\",\"Create Role\",\"Delete Role\",\"Create Permission\",\"Delete Permission\"]'),(3,'READ','user can view details','2021-02-03 13:03:28',NULL),(4,'WRITE','user can write ','2021-02-05 12:51:45',NULL),(5,'READ+','read+','2021-02-05 13:11:48',NULL),(6,'WRITE+','write+','2021-02-05 13:12:06',NULL),(7,'READ+','READ+','2021-02-09 13:11:38',NULL),(8,'test Permission','test Permission','2021-02-09 17:36:07',NULL),(12,'my PERMISSION','permission','2021-02-09 17:50:49','[\"View Employees\",\"Edit Employee\",\"Delete Employee\",\"View Role\",\"Edit Role\",\"Create Role\",\"Delete Role\"]'),(13,'my Permission 1','my Permission 1','2021-02-09 19:06:44','[\"Create Employee\",\"Edit Employee\",\"Edit Users\",\"Create Role\",\"View Role\",\"Edit Role\"]'),(14,'My Permission 2','My Permission 2','2021-02-09 22:32:38','[\"Create Employee\",\"View Employees\",\"View Users\",\"Delete Role\"]'),(15,'My Permissions 3','desc','2021-02-09 22:54:27','[\"View Employees\",\"Create Employee\",\"Edit Employee\",\"Delete Employee\"]'),(16,'My Permissions 4','desc','2021-02-09 23:10:30','[\"View Employees\",\"Create Employee\"]'),(18,'My Permissions 5','description','2021-02-10 00:22:11','[\"Create Employee\",\"Edit Employee\",\"View Role\",\"Delete Role\",\"Edit Role\",\"Delete Permission\",\"Create Role\"]');
+INSERT INTO `permissions_table` VALUES (2,'ALL','user have all access','2021-02-02 18:48:15','[\"View Employees\",\"Create Employee\",\"Edit Employee\",\"Delete Employee\",\"View Users\",\"Edit Users\",\"Delete Users\",\"View Role\",\"Edit Role\",\"Create Role\",\"Delete Role\",\"Delete Permission\",\"Create Permission\",\"Edit Permission\"]'),(12,'my PERMISSION','permission','2021-02-09 17:50:49','[\"View Employees\",\"Edit Employee\",\"Delete Employee\",\"View Role\",\"Edit Role\",\"Create Role\",\"Delete Role\"]'),(13,'my Permission 1','my Permission 1','2021-02-09 19:06:44','[\"Create Employee\",\"Edit Employee\",\"Edit Users\",\"Create Role\",\"View Role\",\"Edit Role\"]'),(15,'My Permissions 3','desc','2021-02-09 22:54:27','[\"View Employees\",\"Create Employee\",\"Edit Employee\",\"Delete Employee\"]'),(16,'My Permissions 4','desc','2021-02-09 23:10:30','[\"View Employees\",\"Create Employee\",\"Edit Employee\",\"Delete Employee\"]'),(18,'My Permissions 5','description','2021-02-10 00:22:11','[\"Create Employee\",\"Edit Employee\",\"View Role\",\"Delete Role\",\"Edit Role\",\"Delete Permission\",\"Create Role\"]'),(20,'CEO PERMISSIONS','CEO PERMISSIONS','2021-02-10 13:08:38','[\"View Employees\",\"Create Employee\",\"Edit Employee\",\"Delete Employee\",\"View Users\",\"Edit Users\",\"Delete Users\",\"View Role\",\"Edit Role\",\"Create Role\",\"Delete Role\",\"Delete Permission\",\"Create Permission\"]'),(30,'Test Permission','Test Permission','2021-02-10 15:40:53','[\"Edit Employee\",\"Delete Users\",\"Create Role\",\"Delete Permission\",\"Edit Role\",\"Edit Users\",\"Create Employee\"]'),(31,'Test Permission2','Test Permission2','2021-02-10 15:47:01','[\"View Employees\",\"Edit Employee\",\"Delete Users\",\"Delete Role\",\"Edit Permission\",\"Create Employee\",\"Edit Role\"]'),(32,'Test Permission 3','Test Permission 3','2021-02-10 15:56:57','[\"Create Employee\",\"Delete Employee\",\"Delete Users\"]');
 /*!40000 ALTER TABLE `permissions_table` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -98,7 +98,7 @@ CREATE TABLE `user_roles` (
 
 LOCK TABLES `user_roles` WRITE;
 /*!40000 ALTER TABLE `user_roles` DISABLE KEYS */;
-INSERT INTO `user_roles` VALUES (1,'CHAIRMAN','ALL','2021-02-05 11:26:08',2,0),(2,'GUEST','READ','2021-02-05 11:37:57',3,5),(5,'CEO','CEO','2021-02-05 11:59:57',1,1),(14,'CTO','CTO','2021-02-05 12:23:11',2,5),(15,'CFO','CFO','2021-02-05 12:27:02',2,5),(16,'CMO','CMO','2021-02-05 13:13:21',6,5),(17,'VICE PRESIDENT','VICE PRESIDENT','2021-02-05 13:14:15',6,16),(18,'MANAGER','MANAGER','2021-02-05 13:14:42',6,14),(19,'ASSOCIATE MANAGEGER','ASSOCIATE MANAGEGER','2021-02-05 13:15:37',6,17),(20,'PROGRAMMER ANALYST','PROGRAMMER ANALYST','2021-02-05 13:16:11',5,18),(21,'JR.PROGRAMMER ANALYST','JR.PROGRAMMER ANALYST','2021-02-05 13:22:41',5,18),(22,'ADMIN','ADMIN','2021-02-05 17:29:45',2,14),(27,'SR. MANGAER1','SR. MANGAER1','2021-02-06 12:28:14',5,17),(32,'ASSISTANT MANAGER','ASSISTANT MANAGER','2021-02-09 11:41:26',6,18),(33,'CHRO','CHRO','2021-02-09 13:10:11',6,5),(34,'HR1','HR1','2021-02-09 13:10:40',3,14),(35,'MANGER','MANGER','2021-02-09 16:09:04',6,17),(37,'ASSiSTANT VP','ASSiSTANT VP','2021-02-09 16:31:44',13,14);
+INSERT INTO `user_roles` VALUES (1,'CHAIRMAN','ALL','2021-02-05 11:26:08',2,0),(2,'GUEST','READ','2021-02-05 11:37:57',16,5),(5,'CEO','CEO','2021-02-05 11:59:57',20,1),(14,'CTO','CTO','2021-02-05 12:23:11',2,5),(15,'CFO','CFO','2021-02-05 12:27:02',2,5),(16,'CMO','CMO','2021-02-05 13:13:21',12,5),(17,'VICE PRESIDENT','VICE PRESIDENT','2021-02-05 13:14:15',13,16),(19,'ASSOCIATE MANAGEGER','ASSOCIATE MANAGEGER','2021-02-05 13:15:37',15,17),(20,'PROGRAMMER ANALYST','PROGRAMMER ANALYST','2021-02-05 13:16:11',15,35),(21,'JR.PROGRAMMER ANALYST','JR.PROGRAMMER ANALYST','2021-02-05 13:22:41',13,21),(22,'ADMIN','ADMIN','2021-02-05 17:29:45',2,14),(27,'SR. MANGAER1','SR. MANGAER1','2021-02-06 12:28:14',18,17),(32,'ASSISTANT MANAGER','ASSISTANT MANAGER','2021-02-09 11:41:26',12,18),(33,'CHRO','CHRO','2021-02-09 13:10:11',18,5),(35,'MANGER','MANGER','2021-02-09 16:09:04',18,17),(37,'ASSiSTANT VP','ASSiSTANT VP','2021-02-09 16:31:44',13,14);
 /*!40000 ALTER TABLE `user_roles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -122,7 +122,7 @@ CREATE TABLE `users_table` (
   PRIMARY KEY (`ID`),
   KEY `ROLE_ID_FK` (`ROLE_ID_FK`),
   CONSTRAINT `users_table_ibfk_1` FOREIGN KEY (`ROLE_ID_FK`) REFERENCES `user_roles` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -131,7 +131,7 @@ CREATE TABLE `users_table` (
 
 LOCK TABLES `users_table` WRITE;
 /*!40000 ALTER TABLE `users_table` DISABLE KEYS */;
-INSERT INTO `users_table` VALUES (34,'usr1','$2b$10$YTHXNyZEXzCPtfFqe1uCwOcJbT9WTr2C0o.XRT6oL40G/r9kXsKiK','Dinesh','Sonawane','2021-02-05 11:39:50',22,'sonawane@gmail.com',2),(38,'test123','$2b$10$jYnBmmU4NQ9yUCKtxBzffOeS7x/jZIAlggUa.W0gNVXMG1LNLovzq','test ','lastnamne','2021-02-06 10:23:04',20,'ulbvzevfyytiy@baybabes.com',4),(39,'usr2','$2b$10$ZBX73QPH.9rsM6XPpDbQ1uCeCd7WRVRBKiFsArc/NINa1ILKwSQI.','test1','test2','2021-02-06 16:12:09',37,'usr@gmai.com',18),(40,'usr3','$2b$10$dxG3kEQ//h0olSE8UhZQNORwex2nUP9HXU96cCxznv/SYBfxXd4BW','Test','Register','2021-02-09 11:43:51',22,'ulbvzevfyytiy@baybabes.com',NULL),(41,'usr4','$2b$10$h5mrZWFoOGnzXv7jitZwoOjr0X/wL2NYTY3PvKnAI8U0YfwpG5i7y','test ','user','2021-02-09 13:05:40',22,'ulbvzevfyytiy@baybabes.com',NULL),(42,'usr5','$2b$10$biO3woLUm2219zbUQoWUiOaABJ/lip/xETlYhfNlbX8epBQvLAhJ2','test ','lastname','2021-02-09 16:01:37',22,'ulbvzevfyytiy@baybabes.com',NULL);
+INSERT INTO `users_table` VALUES (34,'usr1','$2b$10$YTHXNyZEXzCPtfFqe1uCwOcJbT9WTr2C0o.XRT6oL40G/r9kXsKiK','Dinesh','Sonawane','2021-02-05 11:39:50',22,'sonawane@gmail.com',2),(39,'usr2','$2b$10$ZBX73QPH.9rsM6XPpDbQ1uCeCd7WRVRBKiFsArc/NINa1ILKwSQI.','test1','test2','2021-02-06 16:12:09',37,'usr@gmai.com',32),(43,'usr3','$2b$10$5Fb30Mh9x5tblTOSRg7/0uCU6DJkd/CpHxQSFU82oPqqDV7jLw45e','test','user','2021-02-10 11:24:20',5,'gmail@gmail.com',20);
 /*!40000 ALTER TABLE `users_table` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -144,4 +144,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-02-10  0:32:48
+-- Dump completed on 2021-02-10 16:17:08
