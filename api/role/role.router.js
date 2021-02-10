@@ -36,6 +36,24 @@ router.get("/permission", checkToken, (req, res) => {
 
     })
 });
+router.patch("/permission",   checkToken,(req, res) => {
+    pool.query(
+        `update permissions_table set permission_code=?, permission_desc=?, permission_array=? where id = ?`,
+        [
+            req.body.permission_code,
+            req.body.permission_desc,
+            JSON.stringify(req.body.permission_array),
+            req.body.id,
+        ],
+        (error, results) => {
+            if (error) {
+                res.status(400).json({ msg: "something went wrong" });
+            } else {
+                res.status(200).json({ res: results });
+            }
+        }
+    );
+});
 //delete Role
 router.delete("/delete", checkToken, (req, res) => {
     pool.query(
