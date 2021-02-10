@@ -27,7 +27,7 @@ router.get("/id", (req, res) => {
     })
 });
 router.get("/permission", checkToken, (req, res) => {
-    pool.query('select * from PERMISSIONS_TABLE', (err, data) => {
+    pool.query('select * from PERMISSIONS_TABLE  order by ID desc', (err, data) => {
         if (err) {
             res.status(400).json({ msg: "something went wrong" });
         } else {
